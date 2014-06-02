@@ -459,102 +459,96 @@ public class InterfaceHamilton extends JFrame {
 		lblIloIteracji.setBounds(298, 32, 61, 14);
 		geneticAlgorithPanel.add(lblIloIteracji);
 		
-				hamiltonPanel_1 = new JPanel();
-				hamiltonPanel_1.setBounds(111, 160, 620, 347);
-				contentPane.add(hamiltonPanel_1);
-				hamiltonPanel_1.setBorder(new TitledBorder(null, "Hamilton Path", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-				hamiltonPanel_1.setBackground(Color.LIGHT_GRAY);
-				hamiltonPanel_1.setLayout(null);
+		hamiltonPanel_1 = new JPanel();
+		hamiltonPanel_1.setBounds(111, 160, 620, 347);
+		contentPane.add(hamiltonPanel_1);
+		hamiltonPanel_1.setBorder(new TitledBorder(null, "Hamilton Path", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		hamiltonPanel_1.setBackground(Color.LIGHT_GRAY);
+		hamiltonPanel_1.setLayout(null);
 				
-						JLabel lblIloOtrzymanychTras = new JLabel("ilo\u015B\u0107 otrzymanych tras");
-						lblIloOtrzymanychTras.setBounds(257, 45, 164, 14);
-						hamiltonPanel_1.add(lblIloOtrzymanychTras);
+		JLabel lblIloOtrzymanychTras = new JLabel("ilo\u015B\u0107 otrzymanych tras");
+		lblIloOtrzymanychTras.setBounds(257, 45, 164, 14);
+		hamiltonPanel_1.add(lblIloOtrzymanychTras);
 						
-								hamiltonSpinner = new JSpinner();
-								hamiltonSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-								hamiltonSpinner.setFont(new Font("Tahoma", Font.BOLD, 14));
-								hamiltonSpinner.setBounds(219, 70, 189, 34);
-								hamiltonPanel_1.add(hamiltonSpinner);
+		hamiltonSpinner = new JSpinner();
+     	hamiltonSpinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		hamiltonSpinner.setFont(new Font("Tahoma", Font.BOLD, 14));
+		hamiltonSpinner.setBounds(219, 70, 189, 34);
+		hamiltonPanel_1.add(hamiltonSpinner);
 								
-										eliminacjaPanel = new JPanel();
-										eliminacjaPanel.setBorder(new TitledBorder(null, "metoda eliminacji", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-										eliminacjaPanel.setBackground(Color.LIGHT_GRAY);
-										eliminacjaPanel.setBounds(197, 126, 286, 114);
-										hamiltonPanel_1.add(eliminacjaPanel);
-										eliminacjaPanel.setLayout(null);
+		eliminacjaPanel = new JPanel();
+		eliminacjaPanel.setBorder(new TitledBorder(null, "metoda eliminacji", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		eliminacjaPanel.setBackground(Color.LIGHT_GRAY);
+		eliminacjaPanel.setBounds(197, 126, 286, 114);
+    	hamiltonPanel_1.add(eliminacjaPanel);
+		eliminacjaPanel.setLayout(null);
 										
-												rdbtnWszystkieMiasta = new JRadioButton("wszystkie miasta \r\n(bez przeskok\u00F3w)");
-												rdbtnWszystkieMiasta.setSelected(true);
-												rdbtnWszystkieMiasta.setBackground(Color.LIGHT_GRAY);
-												rdbtnWszystkieMiasta.setActionCommand("allCity");
-												buttonGroup.add(rdbtnWszystkieMiasta);
-												rdbtnWszystkieMiasta.setBounds(6, 24, 247, 36);
-												eliminacjaPanel.add(rdbtnWszystkieMiasta);
+		rdbtnWszystkieMiasta = new JRadioButton("wszystkie miasta \r\n(bez przeskok\u00F3w)");
+		rdbtnWszystkieMiasta.setSelected(true);
+		rdbtnWszystkieMiasta.setBackground(Color.LIGHT_GRAY);
+		rdbtnWszystkieMiasta.setActionCommand("allCity");
+		buttonGroup.add(rdbtnWszystkieMiasta);
+		rdbtnWszystkieMiasta.setBounds(6, 24, 247, 36);
+		eliminacjaPanel.add(rdbtnWszystkieMiasta);
 												
-														rdbtnMiastaLiczoneZ = new JRadioButton("miasta liczone z przeskokami\r\n");
-														rdbtnMiastaLiczoneZ.setBackground(Color.LIGHT_GRAY);
-														rdbtnMiastaLiczoneZ.setActionCommand("cityToPause");
-														buttonGroup.add(rdbtnMiastaLiczoneZ);
-														rdbtnMiastaLiczoneZ.setBounds(6, 63, 235, 44);
-														eliminacjaPanel.add(rdbtnMiastaLiczoneZ);
+		rdbtnMiastaLiczoneZ = new JRadioButton("miasta liczone z przeskokami\r\n");
+		rdbtnMiastaLiczoneZ.setBackground(Color.LIGHT_GRAY);
+		rdbtnMiastaLiczoneZ.setActionCommand("cityToPause");
+		buttonGroup.add(rdbtnMiastaLiczoneZ);
+		rdbtnMiastaLiczoneZ.setBounds(6, 63, 235, 44);
+		eliminacjaPanel.add(rdbtnMiastaLiczoneZ);
 														
 														
-																btnUruchom = new JButton("Uruchom");
-																btnUruchom.addActionListener(new ActionListener() {
+		btnUruchom = new JButton("Uruchom");
+		btnUruchom.addActionListener(new ActionListener() {
 																	
 
-																	public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 																		
-																		int populationSize = (Integer) populationSpinner.getValue();
-																		int populationSizeCorrectPaths = (Integer) hamiltonSpinner.getValue();
-																		double muttationSeek = (Double) muttationSpinner.getValue();
-																		int tournamentSize = (Integer) tournamentSpinner.getValue();
-																		int amountIteration = (Integer) iterationSpinner.getValue();
+			int populationSize = (Integer) populationSpinner.getValue();
+			int populationSizeCorrectPaths = (Integer) hamiltonSpinner.getValue();
+			double muttationSeek = (Double) muttationSpinner.getValue();
+			int tournamentSize = (Integer) tournamentSpinner.getValue();
+		    int amountIteration = (Integer) iterationSpinner.getValue();
 																		
-																		MethodFitness method;
-																		matrix.setReady();
-																		HamiltonAlgorithm.setMatrixPermission(matrix);
-																		if(buttonGroup.getSelection().getActionCommand().equals("allCity"))
-																			method = MethodFitness.getAllConnect;
-																		else
-																			method = MethodFitness.getAfterAnotherConnect;
+			MethodFitness method;
+			matrix.setReady();
+			HamiltonAlgorithm.setMatrixPermission(matrix);
+			if(buttonGroup.getSelection().getActionCommand().equals("allCity"))
+					 method = MethodFitness.getAllConnect;
+			else
+					 method = MethodFitness.getAfterAnotherConnect;
 
 
 
-																		Population testPopulacji = new Population(populationSize, true);
+			Population testPopulacji = new Population(populationSize, true);
 																	
-																		geneticAlgorithm = new GeneticAlgorithm(populationSizeCorrectPaths,muttationSeek,tournamentSize,method);
-																		/******************* Test population *************************/
-																		System.out.println();
-																		for (int i = 0; i < amountIteration; i++)
-																			if (!geneticAlgorithm.isFull()) {
-																				try {
-																					testPopulacji = geneticAlgorithm.solvePopulation(testPopulacji);
-																				} catch (GeneticAlgorithmExceptions err) {
-																					err.printStackTrace();
-																				}
+			geneticAlgorithm = new GeneticAlgorithm(populationSizeCorrectPaths,muttationSeek,tournamentSize,method);
+			/******************* Test population *************************/
+		    System.out.println();
+			for (int i = 0; i < amountIteration; i++)
+					if (!geneticAlgorithm.isFull()) {
+							try {
+								testPopulacji = geneticAlgorithm.solvePopulation(testPopulacji);
+							} catch (GeneticAlgorithmExceptions err) {
+								err.printStackTrace();
+							}
 
-																			}
+					}
 
-																		tours = geneticAlgorithm.getAmountGoodPath();
-																		tab = new int[tours][g.getVertexCount()];
-																		Population hamiltonPaths = geneticAlgorithm.getHamiltonPaths(); //population of correct non-duplicated paths. 
-																		System.out.println("Correct paths: " + geneticAlgorithm.getAmountGoodPath());
-																		for (int i = 0; i < geneticAlgorithm.getAmountGoodPath(); i++) {
-																			System.out.println(HamiltonAlgorithm.checkHamilton(hamiltonPaths
-																					.getTour(i)) + " : " + hamiltonPaths.getTour(i));
-																					tab[i] = hamiltonPaths.getTour(i).getCycle();
+			tours = geneticAlgorithm.getAmountGoodPath();
+			tab = new int[tours][g.getVertexCount()];
+			Population hamiltonPaths = geneticAlgorithm.getHamiltonPaths(); //population of correct non-duplicated paths. 
+			System.out.println("Correct paths: " + geneticAlgorithm.getAmountGoodPath());
+			for (int i = 0; i < geneticAlgorithm.getAmountGoodPath(); i++) {
+					System.out.println(HamiltonAlgorithm.checkHamilton(hamiltonPaths
+					.getTour(i)) + " : " + hamiltonPaths.getTour(i));
+					tab[i] = hamiltonPaths.getTour(i).getCycle();
 																					
-																		}
-//																		for(int i = 0; i < tours; i++){
-//																			for(int j = 0; j < g.getVertexCount(); j++)
-//																			System.out.print(tab[i][j]);
-//																			System.out.println("\n");
-//																		}
-																		
-																        
-																	}
-																});
+			}
+
+	}
+});
 																btnUruchom.setFont(new Font("Tahoma", Font.BOLD, 14));
 																btnUruchom.setBounds(219, 283, 189, 34);
 																hamiltonPanel_1.add(btnUruchom);
